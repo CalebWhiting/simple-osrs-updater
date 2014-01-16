@@ -28,7 +28,7 @@ public class AbstractInstruction implements Instruction {
             case 0: // opcode
                 return this.opcode == node.getOpcode();
             case 1: // type
-                return type == node.getClass()
+                return type == node.getClass();
             default:
                 throw new RuntimeException("invalid constructor: " + this.constructor);
         }
