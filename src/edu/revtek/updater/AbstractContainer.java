@@ -31,13 +31,13 @@ public abstract class AbstractContainer {
     Class[] dependencies;
 
     {
-        List<String> keys = new Vector<>();
+        List<String> keys = new LinkedList<>();
         initKeys(keys);
         List<Class> dependencies = new Vector<>();
         initDependencies(dependencies);
         this.keys = keys.toArray(new String[keys.size()]);
         this.dependencies = dependencies.toArray(new Class[dependencies.size()]);
-        this.hooks = new HashMap<>();
+        this.hooks = new LinkedHashMap<>();
         for (String s : this.keys) {
             this.hooks.put(s, null);
         }

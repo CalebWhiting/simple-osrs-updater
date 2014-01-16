@@ -1,7 +1,7 @@
 package edu.revtek.updater;
 
 import edu.revtek.concurrent.Instance;
-import edu.revtek.util.ASMUtil;
+import edu.revtek.util.asm.ASMUtil;
 import edu.revtek.util.IOUtil;
 import edu.revtek.util.LocalClassLoader;
 import edu.revtek.util.tree.basic.BasicTree;

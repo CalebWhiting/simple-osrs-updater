@@ -1,4 +1,4 @@
-package edu.revtek.util;
+package edu.revtek.util.asm;
 
 import jdk.internal.org.objectweb.asm.ClassReader;
 import jdk.internal.org.objectweb.asm.tree.ClassNode;
