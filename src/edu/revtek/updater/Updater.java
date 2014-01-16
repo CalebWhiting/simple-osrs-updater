@@ -149,10 +149,8 @@ public class Updater extends Instance implements Runnable {
         while (true) {
             try {
                 current = current.getNext();
-                IntInsnNode nextInt = nextInt(current);
-                if (nextInt == null)
-                    return -1;
-                if (nextInt.operand != 765)
+                IntInsnNode nextInt;
+                if ((nextInt = nextInt(current)).operand != 765)
                     continue;
                 if ((nextInt = nextInt(nextInt)).operand != 503)
                     continue;
