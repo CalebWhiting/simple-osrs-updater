@@ -8,7 +8,7 @@ import jdk.internal.org.objectweb.asm.tree.MethodNode;
 import java.util.*;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  *         <p/>
  *         A utility for locating patterns of instructions
  */

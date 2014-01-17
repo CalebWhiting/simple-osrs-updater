@@ -4,7 +4,7 @@ import edu.revtek.util.asm.Instruction;
 import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  */
 public class AbstractInstruction implements Instruction {
 

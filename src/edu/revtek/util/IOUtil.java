@@ -1,14 +1,12 @@
 package edu.revtek.util;
 
-import sun.misc.IOUtils;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  */
 public class IOUtil {
 

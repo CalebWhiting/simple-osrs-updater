@@ -1,7 +1,7 @@
 package edu.revtek.util.tree.basic;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  */
 public class EmptyBasicTreeNode<T> extends BasicTreeNode<T> {
 

@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  *
  * A wrapper for holding data relevent to a hook value
  */

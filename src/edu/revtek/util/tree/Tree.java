@@ -1,7 +1,7 @@
 package edu.revtek.util.tree;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  */
 public interface Tree<T extends TreeNode> {
 

@@ -16,9 +16,9 @@ import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 
 /**
- * @author Caleb Bradford
- *
- * A class representing an archive identifier
+ * @author Caleb Whiting
+ *         <p/>
+ *         A class representing an archive identifier
  */
 public class Updater extends Instance implements Runnable {
 

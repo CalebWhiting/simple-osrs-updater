@@ -5,7 +5,7 @@ import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 import jdk.internal.org.objectweb.asm.tree.TypeInsnNode;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  */
 public class TypeInstruction implements Instruction {
 

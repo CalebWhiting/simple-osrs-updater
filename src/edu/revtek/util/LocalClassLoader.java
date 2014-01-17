@@ -12,7 +12,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  */
 public class LocalClassLoader {
 

@@ -5,7 +5,7 @@ import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 import jdk.internal.org.objectweb.asm.tree.FieldInsnNode;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  */
 public class FieldInstruction implements Instruction {
 

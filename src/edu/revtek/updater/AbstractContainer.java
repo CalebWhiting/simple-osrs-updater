@@ -6,7 +6,7 @@ import jdk.internal.org.objectweb.asm.tree.ClassNode;
 import java.util.*;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  *         <p/>
  *         A abstract class representing a class identifier
  */

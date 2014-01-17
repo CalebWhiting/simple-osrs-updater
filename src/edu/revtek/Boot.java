@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.jar.JarInputStream;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  */
 public class Boot {
 

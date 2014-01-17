@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.lang.reflect.Modifier;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  *         <p/>
  *         Useful utilities for the ASM API
  */

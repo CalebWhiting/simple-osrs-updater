@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Vector;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  *
  * A wrapper for instances, instanced by ThreadGroup's
  */

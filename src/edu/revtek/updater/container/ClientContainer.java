@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  */
 public class ClientContainer extends AbstractContainer {
 
@@ -42,6 +42,20 @@ public class ClientContainer extends AbstractContainer {
     }
 
     private void getSkillData() {
+        /*
+        if (var == 0) {
+            return var;
+        }
+        if (var == 1) {
+            var = level_array[var[var++]];
+        }
+        if (var == 2) {
+            var = real_level_array[var[var++]];
+        }
+        if (var == 3) {
+            var = exp_array[var[var++]];
+        }
+        */
         InstructionPattern pattern = new InstructionPattern(20,
                 new AbstractInstruction(Opcodes.ICONST_0),
                 new AbstractInstruction(Opcodes.IRETURN),

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  */
 public class BasicTreeNode<T> implements TreeNode<BasicTreeNode> {
 

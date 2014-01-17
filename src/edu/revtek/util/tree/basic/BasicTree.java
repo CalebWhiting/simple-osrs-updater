@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  */
 public class BasicTree implements Tree<BasicTreeNode> {
 
@@ -37,7 +37,7 @@ public class BasicTree implements Tree<BasicTreeNode> {
     private void write(OutputStream out, BasicTreeNode node, int i) {
         StringBuilder build = new StringBuilder();
         for (int i1 = 0; i1 < i; i1++) {
-            build.append('\t');
+            build.append("   ");
         }
         build.append(node.valueToString());
         build.append('\n');

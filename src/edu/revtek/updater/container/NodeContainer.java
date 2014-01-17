@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * @author Caleb Bradford
+ * @author Caleb Whiting
  */
 public class NodeContainer extends AbstractContainer {
 
@@ -54,8 +54,8 @@ public class NodeContainer extends AbstractContainer {
     protected static void addHooks(AbstractContainer container, ClassNode c) {
         InstructionPattern pattern = new InstructionPattern(12,
                 new AbstractInstruction(Opcodes.ACONST_NULL),
-                new FieldInstruction(Opcodes.PUTFIELD, c.name, null, "L" + c.name +  ";"),
-                new FieldInstruction(Opcodes.PUTFIELD, c.name, null, "L" + c.name +  ";")
+                new FieldInstruction(Opcodes.PUTFIELD, c.name, null, "L" + c.name + ";"),
+                new FieldInstruction(Opcodes.PUTFIELD, c.name, null, "L" + c.name + ";")
         );
         AbstractInsnNode[] nodes = pattern.find(c);
         if (nodes != null) {
