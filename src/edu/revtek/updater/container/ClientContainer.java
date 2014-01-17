@@ -8,6 +8,7 @@ import edu.revtek.updater.asm.instructions.FieldInstruction;
 import jdk.internal.org.objectweb.asm.Opcodes;
 import jdk.internal.org.objectweb.asm.tree.*;
 
+import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.List;
 
@@ -82,7 +83,7 @@ public class ClientContainer extends AbstractContainer {
     public void lazyHook(String key, String desc) {
         for (ClassNode cn : Updater.get().getClassNodes().values()) {
             for (FieldNode fn : cn.fields) {
-                if (fn.desc.equals(desc))
+                if (Modifier.isStatic(fn.access) && fn.desc.equals(desc))
                     hooks.get(key).set(cn.name, fn.name, fn.desc);
             }
         }
