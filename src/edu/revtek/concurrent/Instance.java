@@ -7,6 +7,8 @@ import java.util.Vector;
 
 /**
  * @author Caleb Bradford
+ *
+ * A wrapper for instances, instanced by ThreadGroup's
  */
 public class Instance {
 

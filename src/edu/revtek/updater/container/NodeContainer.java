@@ -1,7 +1,6 @@
 package edu.revtek.updater.container;
 
 import edu.revtek.updater.AbstractContainer;
-import edu.revtek.updater.Hook;
 import edu.revtek.util.asm.ASMUtil;
 import edu.revtek.util.asm.InstructionPattern;
 import edu.revtek.util.asm.instructions.AbstractInstruction;
@@ -47,7 +46,7 @@ public class NodeContainer extends AbstractContainer {
     public void visit(ClassNode cn) {
         for (FieldNode f : cn.fields) {
             if (!Modifier.isStatic(f.access) && f.desc.equals("J"))
-                hooks.put("uid", new Hook(cn.name, f.name, "J"));
+                hooks.get("uid").set(cn.name, f.name, "J");
         }
         addHooks(this, cn);
     }
@@ -60,10 +59,8 @@ public class NodeContainer extends AbstractContainer {
         );
         AbstractInsnNode[] nodes = pattern.find(c);
         if (nodes != null) {
-            FieldInsnNode next = (FieldInsnNode) nodes[1];
-            FieldInsnNode prev = (FieldInsnNode) nodes[2];
-            container.hooks.put("next", new Hook(next.owner, next.name, next.desc));
-            container.hooks.put("previous",  new Hook(prev.owner, prev.name, prev.desc));
+            container.hooks.get("next").set((FieldInsnNode) nodes[1]);
+            container.hooks.get("previous").set((FieldInsnNode) nodes[2]);
         }
     }
 

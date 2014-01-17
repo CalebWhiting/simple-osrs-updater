@@ -10,6 +10,8 @@ import java.lang.reflect.Modifier;
 
 /**
  * @author Caleb Bradford
+ *         <p/>
+ *         Useful utilities for the ASM API
  */
 public class ASMUtil {
 
@@ -21,9 +23,8 @@ public class ASMUtil {
     }
 
     public static ClassNode newClassNode(InputStream in) {
-        ClassReader reader = null;
         try {
-            reader = new ClassReader(in);
+            ClassReader reader = new ClassReader(in);
             ClassNode cn = new ClassNode();
             reader.accept(cn, ClassReader.SKIP_DEBUG);
             return cn;

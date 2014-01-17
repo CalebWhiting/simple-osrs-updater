@@ -14,9 +14,19 @@ import java.util.*;
  */
 public class InstructionPattern {
 
+    /**
+     * Map for caching start positions of patterns to speed up future queries
+     */
     private Map<Object, AbstractInsnNode[]> startCache = new HashMap<>();
 
+    /**
+     * The amount of space allowed between each accepted instruction
+     */
     private int spacing;
+
+    /**
+     * The instruction identifiers
+     */
     private final Instruction[] instructions;
 
     public InstructionPattern(int spacing, Instruction... instructions) {

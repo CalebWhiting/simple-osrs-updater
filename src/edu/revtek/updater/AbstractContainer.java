@@ -7,8 +7,8 @@ import java.util.*;
 
 /**
  * @author Caleb Bradford
- *
- * A abstract class representing a class identifier
+ *         <p/>
+ *         A abstract class representing a class identifier
  */
 public abstract class AbstractContainer {
 
@@ -43,7 +43,7 @@ public abstract class AbstractContainer {
         this.hooks = new LinkedHashMap<>();
         // add keys to the hooks list as placeholders
         for (String s : this.keys) {
-            this.hooks.put(s, null);
+            this.hooks.put(s, new Hook(s));
         }
     }
 
