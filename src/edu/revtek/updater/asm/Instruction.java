@@ -1,4 +1,4 @@
-package edu.revtek.util.asm;
+package edu.revtek.updater.asm;
 
 import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 

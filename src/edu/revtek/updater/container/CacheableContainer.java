@@ -2,7 +2,7 @@ package edu.revtek.updater.container;
 
 import edu.revtek.updater.AbstractContainer;
 import edu.revtek.updater.Updater;
-import edu.revtek.util.asm.ASMUtil;
+import edu.revtek.updater.asm.ASMUtil;
 import jdk.internal.org.objectweb.asm.tree.ClassNode;
 
 import java.util.Collection;

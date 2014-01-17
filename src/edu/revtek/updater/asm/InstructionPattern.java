@@ -1,11 +1,14 @@
-package edu.revtek.util.asm;
+package edu.revtek.updater.asm;
 
 import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 import jdk.internal.org.objectweb.asm.tree.ClassNode;
 import jdk.internal.org.objectweb.asm.tree.InsnList;
 import jdk.internal.org.objectweb.asm.tree.MethodNode;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
 
 /**
  * @author Caleb Whiting
@@ -13,11 +16,6 @@ import java.util.*;
  *         A utility for locating patterns of instructions
  */
 public class InstructionPattern {
-
-    /**
-     * Map for caching start positions of patterns to speed up future queries
-     */
-    private Map<Object, AbstractInsnNode[]> startCache = new HashMap<>();
 
     /**
      * The amount of space allowed between each accepted instruction
@@ -66,10 +64,6 @@ public class InstructionPattern {
         return null;
     }
 
-    public AbstractInsnNode[] findWithin(Collection<ClassNode> classNodes) {
-        return find(getStarts(classNodes));
-    }
-
     private AbstractInsnNode[] getLocatedAt(AbstractInsnNode start) {
         AbstractInsnNode current = start;
         List<AbstractInsnNode> located = new LinkedList<>();
@@ -93,22 +87,7 @@ public class InstructionPattern {
         return null;
     }
 
-    public AbstractInsnNode[] getStarts(Collection<ClassNode> nodes) {
-        AbstractInsnNode[] cacheValues = startCache.get(this);
-        if (cacheValues != null) return cacheValues;
-        List<AbstractInsnNode> starts = new Vector<>();
-        for (ClassNode cn : nodes) {
-            for (MethodNode mn : cn.methods)
-                Collections.addAll(starts, getStarts(mn));
-        }
-        AbstractInsnNode[] instructions = starts.toArray(new AbstractInsnNode[starts.size()]);
-        startCache.put(this, instructions);
-        return instructions;
-    }
-
     private AbstractInsnNode[] getStarts(MethodNode mn) {
-        AbstractInsnNode[] cacheValues = startCache.get(mn);
-        if (cacheValues != null) return cacheValues;
         List<AbstractInsnNode> starts = new Vector<>();
         Instruction start = instructions[0];
         InsnList i = mn.instructions;
@@ -118,9 +97,7 @@ public class InstructionPattern {
                 starts.add(insn);
             }
         }
-        AbstractInsnNode[] nodes = starts.toArray(new AbstractInsnNode[starts.size()]);
-        startCache.put(mn, nodes);
-        return nodes;
+        return starts.toArray(new AbstractInsnNode[starts.size()]);
     }
 
 }

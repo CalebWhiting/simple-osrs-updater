@@ -2,9 +2,9 @@ package edu.revtek.updater.container;
 
 import edu.revtek.updater.AbstractContainer;
 import edu.revtek.updater.Updater;
-import edu.revtek.util.asm.InstructionPattern;
-import edu.revtek.util.asm.instructions.AbstractInstruction;
-import edu.revtek.util.asm.instructions.FieldInstruction;
+import edu.revtek.updater.asm.InstructionPattern;
+import edu.revtek.updater.asm.instructions.AbstractInstruction;
+import edu.revtek.updater.asm.instructions.FieldInstruction;
 import jdk.internal.org.objectweb.asm.Opcodes;
 import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 import jdk.internal.org.objectweb.asm.tree.ClassNode;
@@ -21,9 +21,9 @@ public class ClientContainer extends AbstractContainer {
 
     @Override
     public void initKeys(List<String> keys) {
-        keys.add("level-array");
-        keys.add("real-level-array");
-        keys.add("exp-array");
+        keys.add("levels");
+        keys.add("realLevels");
+        keys.add("experiences");
     }
 
     @Override
@@ -72,9 +72,9 @@ public class ClientContainer extends AbstractContainer {
                 AbstractInsnNode[] nodes = pattern.find(mn);
                 if (nodes == null)
                     continue;
-                hooks.get("level-array").set((FieldInsnNode) nodes[3]);
-                hooks.get("real-level-array").set((FieldInsnNode) nodes[5]);
-                hooks.get("exp-array").set((FieldInsnNode) nodes[7]);
+                hooks.get("levels").set((FieldInsnNode) nodes[3]);
+                hooks.get("realLevels").set((FieldInsnNode) nodes[5]);
+                hooks.get("experiences").set((FieldInsnNode) nodes[7]);
             }
         }
     }

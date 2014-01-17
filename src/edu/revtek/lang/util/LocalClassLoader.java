@@ -1,4 +1,4 @@
-package edu.revtek.util;
+package edu.revtek.lang.util;
 
 import java.io.File;
 import java.io.FileInputStream;

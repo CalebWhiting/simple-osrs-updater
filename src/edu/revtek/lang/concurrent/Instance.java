@@ -1,4 +1,4 @@
-package edu.revtek.concurrent;
+package edu.revtek.lang.concurrent;
 
 import java.util.Collection;
 import java.util.HashMap;

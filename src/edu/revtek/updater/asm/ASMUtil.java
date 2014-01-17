@@ -1,12 +1,17 @@
-package edu.revtek.util.asm;
+package edu.revtek.updater.asm;
 
 import jdk.internal.org.objectweb.asm.ClassReader;
+import jdk.internal.org.objectweb.asm.ClassWriter;
 import jdk.internal.org.objectweb.asm.tree.ClassNode;
 import jdk.internal.org.objectweb.asm.tree.FieldNode;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Modifier;
+import java.util.Map;
+import java.util.jar.JarEntry;
+import java.util.jar.JarOutputStream;
 
 /**
  * @author Caleb Whiting
@@ -45,4 +50,19 @@ public class ASMUtil {
         return count;
     }
 
+    public static void write(String name, Map<String, ClassNode> classNodes) throws IOException {
+        JarOutputStream out = new JarOutputStream(new FileOutputStream(name));
+        for (ClassNode cn : classNodes.values()) {
+            out.putNextEntry(new JarEntry(cn.name + ".class"));
+            out.write(ASMUtil.getBytes(cn));
+            out.closeEntry();
+        }
+        out.close();
+    }
+
+    private static byte[] getBytes(ClassNode cn) {
+        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+        cn.accept(writer);
+        return writer.toByteArray();
+    }
 }

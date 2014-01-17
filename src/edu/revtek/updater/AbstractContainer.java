@@ -1,6 +1,6 @@
 package edu.revtek.updater;
 
-import edu.revtek.util.tree.basic.BasicTreeNode;
+import edu.revtek.lang.collections.tree.Branch;
 import jdk.internal.org.objectweb.asm.tree.ClassNode;
 
 import java.util.*;
@@ -106,29 +106,38 @@ public abstract class AbstractContainer {
     }
 
     /**
-     * Creates a BasicTree branch for the final output
+     * Gets the object name of this container
      *
-     * @return a BasicTree branch for the final output
+     * @return The object name of this container
      */
-    public BasicTreeNode<String> branch() {
-        String name = name();
+    public String objectName() {
+        return getClass().getSimpleName().replace("Container", "");
+    }
+
+    /**
+     * Creates a Tree branch for the final output
+     *
+     * @return a Tree branch for the final output
+     */
+    public Branch<String> branch() {
+        String value = " > " + objectName();
         if (node == null) {
-            name += " is broken";
+            value += " is broken";
         } else {
-            name += " identified as ";
-            name += node.name;
+            value += " identified as ";
+            value += node.name;
         }
-        BasicTreeNode<String> branch = new BasicTreeNode<>(name.replace("Container", ""));
+        Branch<String> branch = new Branch<>(value);
         if (node != null) {
             for (Map.Entry<String, Hook> node : hooks.entrySet()) {
                 if (node.getValue() == null) {
-                    branch.add(new BasicTreeNode<>(node.getKey() + " is broken"));
+                    branch.add(new Branch<>(node.getKey() + " is broken"));
                     continue;
                 }
-                branch.add(node.getValue().branch(node.getKey()));
+                branch.add(node.getValue().branch());
             }
         } else {
-            branch.add(new BasicTreeNode<>("broken"));
+            branch.add(new Branch<>("broken"));
         }
         return branch;
     }

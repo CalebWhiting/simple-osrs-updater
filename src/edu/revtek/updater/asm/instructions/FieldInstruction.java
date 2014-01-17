@@ -1,6 +1,6 @@
-package edu.revtek.util.asm.instructions;
+package edu.revtek.updater.asm.instructions;
 
-import edu.revtek.util.asm.Instruction;
+import edu.revtek.updater.asm.Instruction;
 import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 import jdk.internal.org.objectweb.asm.tree.FieldInsnNode;
 
@@ -23,18 +23,6 @@ public class FieldInstruction implements Instruction {
 
     public FieldInstruction(int opcode) {
         this(opcode, null, null, null);
-    }
-
-    public static FieldInstruction withOwner(String owner) {
-        return new FieldInstruction(-1, owner, null, null);
-    }
-
-    public static FieldInstruction withName(String name) {
-        return new FieldInstruction(-1, null, name, null);
-    }
-
-    public static FieldInstruction withDesc(String desc) {
-        return new FieldInstruction(-1, null, null, desc);
     }
 
     @Override

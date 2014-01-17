@@ -1,10 +1,10 @@
 package edu.revtek.updater.container;
 
 import edu.revtek.updater.AbstractContainer;
-import edu.revtek.util.asm.ASMUtil;
-import edu.revtek.util.asm.InstructionPattern;
-import edu.revtek.util.asm.instructions.AbstractInstruction;
-import edu.revtek.util.asm.instructions.FieldInstruction;
+import edu.revtek.updater.asm.ASMUtil;
+import edu.revtek.updater.asm.InstructionPattern;
+import edu.revtek.updater.asm.instructions.AbstractInstruction;
+import edu.revtek.updater.asm.instructions.FieldInstruction;
 import jdk.internal.org.objectweb.asm.Opcodes;
 import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 import jdk.internal.org.objectweb.asm.tree.ClassNode;

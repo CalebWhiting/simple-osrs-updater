@@ -1,6 +1,4 @@
-package edu.revtek.util.tree.basic;
-
-import edu.revtek.util.tree.Tree;
+package edu.revtek.lang.collections.tree;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -8,36 +6,43 @@ import java.io.OutputStream;
 /**
  * @author Caleb Whiting
  */
-public class BasicTree implements Tree<BasicTreeNode> {
+public class Tree {
 
-    private BasicTreeNode root;
+    private String tab = "\t";
+    private Branch root;
 
-    public BasicTree() {
+    public Tree() {
 
     }
 
-    public BasicTree(BasicTreeNode root) {
+    public Tree(Branch root) {
         this.root = root;
     }
 
-    @Override
-    public BasicTreeNode getRoot() {
+    public Branch getRoot() {
         return this.root;
     }
 
-    @Override
-    public void setRoot(BasicTreeNode root) {
+    public void setRoot(Branch root) {
         this.root = root;
+    }
+
+    public String getTab() {
+        return tab;
+    }
+
+    public void setTab(String tab) {
+        this.tab = tab;
     }
 
     public void write(OutputStream out) {
         write(out, getRoot(), 0);
     }
 
-    private void write(OutputStream out, BasicTreeNode node, int i) {
+    private void write(OutputStream out, Branch node, int i) {
         StringBuilder build = new StringBuilder();
         for (int i1 = 0; i1 < i; i1++) {
-            build.append("   ");
+            build.append(tab);
         }
         build.append(node.valueToString());
         build.append('\n');
@@ -47,7 +52,7 @@ public class BasicTree implements Tree<BasicTreeNode> {
             e.printStackTrace();
         }
         i++;
-        for (BasicTreeNode sub : node.getChildren()) {
+        for (Branch sub : node.getChildren()) {
             write(out, sub, i);
         }
     }

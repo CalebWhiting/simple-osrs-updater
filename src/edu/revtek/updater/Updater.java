@@ -1,9 +1,9 @@
 package edu.revtek.updater;
 
-import edu.revtek.concurrent.Instance;
-import edu.revtek.util.IOUtil;
-import edu.revtek.util.LocalClassLoader;
-import edu.revtek.util.asm.ASMUtil;
+import edu.revtek.lang.concurrent.Instance;
+import edu.revtek.lang.util.IOUtil;
+import edu.revtek.lang.util.LocalClassLoader;
+import edu.revtek.updater.asm.ASMUtil;
 import jdk.internal.org.objectweb.asm.Opcodes;
 import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 import jdk.internal.org.objectweb.asm.tree.ClassNode;

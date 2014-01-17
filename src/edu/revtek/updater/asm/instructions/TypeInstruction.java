@@ -1,6 +1,6 @@
-package edu.revtek.util.asm.instructions;
+package edu.revtek.updater.asm.instructions;
 
-import edu.revtek.util.asm.Instruction;
+import edu.revtek.updater.asm.Instruction;
 import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 import jdk.internal.org.objectweb.asm.tree.TypeInsnNode;
 
@@ -20,7 +20,8 @@ public class TypeInstruction implements Instruction {
     @Override
     public boolean accept(AbstractInsnNode node) {
         return node.getType() == AbstractInsnNode.TYPE_INSN &&
-                (opcode == -1 || opcode == node.getOpcode()) && (type.equals(((TypeInsnNode) node).desc));
+                (opcode == -1 || opcode == node.getOpcode())
+                && (type == null || type.equals(((TypeInsnNode) node).desc));
     }
 
 }
