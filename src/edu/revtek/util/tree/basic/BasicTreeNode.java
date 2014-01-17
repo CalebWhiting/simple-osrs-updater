@@ -99,4 +99,7 @@ public class BasicTreeNode<T> implements TreeNode<BasicTreeNode> {
         }
     }
 
+    public String valueToString() {
+        return " + " + getValue().toString();
+    }
 }

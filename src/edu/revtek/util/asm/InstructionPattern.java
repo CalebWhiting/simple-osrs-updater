@@ -1,5 +1,5 @@
 package edu.revtek.util.asm;
-import edu.revtek.updater.Updater;
+
 import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 import jdk.internal.org.objectweb.asm.tree.ClassNode;
 import jdk.internal.org.objectweb.asm.tree.InsnList;
@@ -9,6 +9,8 @@ import java.util.*;
 
 /**
  * @author Caleb Bradford
+ *         <p/>
+ *         A utility for locating patterns of instructions
  */
 public class InstructionPattern {
 

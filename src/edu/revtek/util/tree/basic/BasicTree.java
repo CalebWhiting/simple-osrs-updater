@@ -39,8 +39,7 @@ public class BasicTree implements Tree<BasicTreeNode> {
         for (int i1 = 0; i1 < i; i1++) {
             build.append('\t');
         }
-        build.append(" + ");
-        build.append(node.getValue());
+        build.append(node.valueToString());
         build.append('\n');
         try {
             out.write(build.toString().getBytes());

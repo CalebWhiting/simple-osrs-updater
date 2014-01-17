@@ -4,6 +4,8 @@ import edu.revtek.util.tree.basic.BasicTreeNode;
 
 /**
  * @author Caleb Bradford
+ *
+ * A wrapper for holding data relevent to a hook value
  */
 public class Hook {
 

@@ -7,6 +7,8 @@ import java.util.*;
 
 /**
  * @author Caleb Bradford
+ *
+ * A abstract class representing a class identifier
  */
 public abstract class AbstractContainer {
 
@@ -31,6 +33,7 @@ public abstract class AbstractContainer {
     Class[] dependencies;
 
     {
+        // init container
         List<String> keys = new LinkedList<>();
         initKeys(keys);
         List<Class> dependencies = new Vector<>();
@@ -38,6 +41,7 @@ public abstract class AbstractContainer {
         this.keys = keys.toArray(new String[keys.size()]);
         this.dependencies = dependencies.toArray(new Class[dependencies.size()]);
         this.hooks = new LinkedHashMap<>();
+        // add keys to the hooks list as placeholders
         for (String s : this.keys) {
             this.hooks.put(s, null);
         }
@@ -101,6 +105,11 @@ public abstract class AbstractContainer {
         return getClass().getSimpleName();
     }
 
+    /**
+     * Creates a BasicTree branch for the final output
+     *
+     * @return a BasicTree branch for the final output
+     */
     public BasicTreeNode<String> branch() {
         String name = name();
         if (node == null) {
@@ -109,7 +118,7 @@ public abstract class AbstractContainer {
             name += " identified as ";
             name += node.name;
         }
-        BasicTreeNode<String> branch = new BasicTreeNode<>(name);
+        BasicTreeNode<String> branch = new BasicTreeNode<>(name.replace("Container", ""));
         if (node != null) {
             for (Map.Entry<String, Hook> node : hooks.entrySet()) {
                 if (node.getValue() == null) {

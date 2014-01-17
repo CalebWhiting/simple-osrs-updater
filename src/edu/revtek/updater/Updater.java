@@ -1,19 +1,15 @@
 package edu.revtek.updater;
 
 import edu.revtek.concurrent.Instance;
-import edu.revtek.util.asm.ASMUtil;
 import edu.revtek.util.IOUtil;
 import edu.revtek.util.LocalClassLoader;
-import edu.revtek.util.tree.basic.BasicTree;
-import edu.revtek.util.tree.basic.BasicTreeNode;
+import edu.revtek.util.asm.ASMUtil;
 import jdk.internal.org.objectweb.asm.Opcodes;
 import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 import jdk.internal.org.objectweb.asm.tree.ClassNode;
 import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
 import jdk.internal.org.objectweb.asm.tree.MethodNode;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
@@ -24,32 +20,6 @@ import java.util.jar.Manifest;
  */
 public class Updater extends Instance implements Runnable {
 
-    public static void main(String[] args) {
-        ThreadGroup group = new ThreadGroup("updater-thread-group");
-        try {
-            byte[] bytes = IOUtil.read(Updater.class.getResourceAsStream("/resources/deob.jar"));
-            Updater updater = new Updater(group, new JarInputStream(new ByteArrayInputStream(bytes)));
-            Thread t = updater.createThread(updater);
-            t.start();
-            t.join();
-            BasicTree tree = new BasicTree(new BasicTreeNode<>("Revision #" + updater.revision));
-            for (AbstractContainer container : updater.containers) {
-                /*if (container.node != null) {
-                    System.out.println(container.name() + " identified as " + container.node.name);
-                    for (Map.Entry<String, Hook> entry : container.hooks.entrySet()) {
-                        Hook hook = entry.getValue();
-                        System.out.print('\t' + entry.getKey() + ' ');
-                        System.out.println(hook == null ? "is broken" : ("identified as " + hook.owner + "." + hook.name));
-                    }
-                }*/
-                tree.getRoot().add(container.branch());
-            }
-            tree.write(System.out);
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     private Manifest manifest;
     private Map<String, byte[]> files = new HashMap<>();
     private Map<String, ClassNode> classNodes = new HashMap<>();
@@ -58,7 +28,7 @@ public class Updater extends Instance implements Runnable {
 
     public Updater(ThreadGroup threadGroup, JarInputStream in) {
         super(threadGroup);
-        manifest = in.getManifest();
+        this.manifest = in.getManifest();
         JarEntry entry;
         try {
             while ((entry = in.getNextJarEntry()) != null) {
@@ -79,18 +49,6 @@ public class Updater extends Instance implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public Thread createThread(Runnable runnable) {
-        return new Thread(getThreadGroup(), runnable);
-    }
-
-    public static Updater get() {
-        return Instance.get(Thread.currentThread().getThreadGroup(), Updater.class);
-    }
-
-    public static Updater get(ThreadGroup group) {
-        return Instance.get(group, Updater.class);
     }
 
     @Override
@@ -161,6 +119,14 @@ public class Updater extends Instance implements Runnable {
         }
     }
 
+    public static Updater get(ThreadGroup group) {
+        return Instance.get(group, Updater.class);
+    }
+
+    public static Updater get() {
+        return get(Thread.currentThread().getThreadGroup());
+    }
+
     private IntInsnNode nextInt(AbstractInsnNode node) {
         if (node == null) return null;
         AbstractInsnNode current = node;
@@ -171,4 +137,33 @@ public class Updater extends Instance implements Runnable {
         return null;
     }
 
+    public <T extends AbstractContainer> T getContainer(Class<? extends T> type) {
+        for (AbstractContainer container : containers) {
+            if (container.getClass() == type) {
+                //noinspection unchecked
+                return (T) container;
+            }
+        }
+        return null;
+    }
+
+    public Manifest getManifest() {
+        return manifest;
+    }
+
+    public Map<String, byte[]> getFiles() {
+        return files;
+    }
+
+    public Map<String, ClassNode> getClassNodes() {
+        return classNodes;
+    }
+
+    public List<AbstractContainer> getContainers() {
+        return containers;
+    }
+
+    public int getRevision() {
+        return revision;
+    }
 }
