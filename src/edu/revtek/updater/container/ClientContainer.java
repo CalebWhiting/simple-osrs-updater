@@ -6,10 +6,7 @@ import edu.revtek.updater.asm.InstructionPattern;
 import edu.revtek.updater.asm.instructions.AbstractInstruction;
 import edu.revtek.updater.asm.instructions.FieldInstruction;
 import jdk.internal.org.objectweb.asm.Opcodes;
-import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
-import jdk.internal.org.objectweb.asm.tree.ClassNode;
-import jdk.internal.org.objectweb.asm.tree.FieldInsnNode;
-import jdk.internal.org.objectweb.asm.tree.MethodNode;
+import jdk.internal.org.objectweb.asm.tree.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -24,6 +21,9 @@ public class ClientContainer extends AbstractContainer {
         keys.add("levels");
         keys.add("realLevels");
         keys.add("experiences");
+        keys.add("canvas");
+        keys.add("mouse");
+        keys.add("keyboard");
     }
 
     @Override
@@ -75,6 +75,15 @@ public class ClientContainer extends AbstractContainer {
                 hooks.get("levels").set((FieldInsnNode) nodes[3]);
                 hooks.get("realLevels").set((FieldInsnNode) nodes[5]);
                 hooks.get("experiences").set((FieldInsnNode) nodes[7]);
+            }
+        }
+    }
+
+    public void lazyHook(String key, String desc) {
+        for (ClassNode cn : Updater.get().getClassNodes().values()) {
+            for (FieldNode fn : cn.fields) {
+                if (fn.desc.equals(desc))
+                    hooks.get(key).set(cn.name, fn.name, fn.desc);
             }
         }
     }

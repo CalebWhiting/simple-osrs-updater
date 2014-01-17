@@ -65,4 +65,13 @@ public class ASMUtil {
         cn.accept(writer);
         return writer.toByteArray();
     }
+
+    public static FieldNode getLocalField(String name, String desc, ClassNode cn) {
+        for (FieldNode fn : cn.fields) {
+            if ((name == null || fn.name.equals(name)) && (desc == null || fn.desc.equals(desc)))
+                return fn;
+        }
+        return null;
+    }
+
 }
