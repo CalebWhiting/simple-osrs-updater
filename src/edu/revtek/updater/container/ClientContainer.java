@@ -2,9 +2,8 @@ package edu.revtek.updater.container;
 
 import edu.revtek.updater.AbstractContainer;
 import edu.revtek.updater.Updater;
+import edu.revtek.updater.asm.Instruction;
 import edu.revtek.updater.asm.InstructionPattern;
-import edu.revtek.updater.asm.instructions.AbstractInstruction;
-import edu.revtek.updater.asm.instructions.FieldInstruction;
 import jdk.internal.org.objectweb.asm.Opcodes;
 import jdk.internal.org.objectweb.asm.tree.*;
 
@@ -43,29 +42,15 @@ public class ClientContainer extends AbstractContainer {
     }
 
     private void getSkillData() {
-        /*
-        if (var == 0) {
-            return var;
-        }
-        if (var == 1) {
-            var = level_array[var[var++]];
-        }
-        if (var == 2) {
-            var = real_level_array[var[var++]];
-        }
-        if (var == 3) {
-            var = exp_array[var[var++]];
-        }
-        */
         InstructionPattern pattern = new InstructionPattern(20,
-                new AbstractInstruction(Opcodes.ICONST_0),
-                new AbstractInstruction(Opcodes.IRETURN),
-                new AbstractInstruction(Opcodes.ICONST_1),
-                new FieldInstruction(Opcodes.GETSTATIC, null, null, "[I"),
-                new AbstractInstruction(Opcodes.ICONST_2),
-                new FieldInstruction(Opcodes.GETSTATIC, null, null, "[I"),
-                new AbstractInstruction(Opcodes.ICONST_3),
-                new FieldInstruction(Opcodes.GETSTATIC, null, null, "[I")
+                Instruction.getAbstractInsn(Opcodes.ICONST_0),
+                Instruction.getAbstractInsn(Opcodes.IRETURN),
+                Instruction.getAbstractInsn(Opcodes.ICONST_1),
+                Instruction.getFieldInsn(Opcodes.GETSTATIC, null, null, "[I"),
+                Instruction.getAbstractInsn(Opcodes.ICONST_2),
+                Instruction.getFieldInsn(Opcodes.GETSTATIC, null, null, "[I"),
+                Instruction.getAbstractInsn(Opcodes.ICONST_3),
+                Instruction.getFieldInsn(Opcodes.GETSTATIC, null, null, "[I")
 
         );
         for (ClassNode cn : Updater.get().getClassNodes().values()) {

@@ -2,9 +2,8 @@ package edu.revtek.updater.container;
 
 import edu.revtek.updater.AbstractContainer;
 import edu.revtek.updater.asm.ASMUtil;
+import edu.revtek.updater.asm.Instruction;
 import edu.revtek.updater.asm.InstructionPattern;
-import edu.revtek.updater.asm.instructions.AbstractInstruction;
-import edu.revtek.updater.asm.instructions.FieldInstruction;
 import jdk.internal.org.objectweb.asm.Opcodes;
 import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 import jdk.internal.org.objectweb.asm.tree.ClassNode;
@@ -53,9 +52,9 @@ public class NodeContainer extends AbstractContainer {
 
     protected static void addHooks(AbstractContainer container, ClassNode c) {
         InstructionPattern pattern = new InstructionPattern(12,
-                new AbstractInstruction(Opcodes.ACONST_NULL),
-                new FieldInstruction(Opcodes.PUTFIELD, c.name, null, "L" + c.name + ";"),
-                new FieldInstruction(Opcodes.PUTFIELD, c.name, null, "L" + c.name + ";")
+                Instruction.getAbstractInsn(Opcodes.ACONST_NULL),
+                Instruction.getFieldInsn(Opcodes.PUTFIELD, c.name, null, "L" + c.name + ";"),
+                Instruction.getFieldInsn(Opcodes.PUTFIELD, c.name, null, "L" + c.name + ";")
         );
         AbstractInsnNode[] nodes = pattern.find(c);
         if (nodes != null) {

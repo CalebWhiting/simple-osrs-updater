@@ -3,9 +3,8 @@ package edu.revtek.updater.container;
 import edu.revtek.updater.AbstractContainer;
 import edu.revtek.updater.Updater;
 import edu.revtek.updater.asm.ASMUtil;
+import edu.revtek.updater.asm.Instruction;
 import edu.revtek.updater.asm.InstructionPattern;
-import edu.revtek.updater.asm.instructions.FieldInstruction;
-import edu.revtek.updater.asm.instructions.TypeInstruction;
 import jdk.internal.org.objectweb.asm.Opcodes;
 import jdk.internal.org.objectweb.asm.tree.*;
 
@@ -41,8 +40,8 @@ public class CanvasContainer extends AbstractContainer {
 
     private void getCanvas() {
         InstructionPattern pattern = new InstructionPattern(
-                new TypeInstruction(Opcodes.NEW, node.name),
-                new FieldInstruction(Opcodes.PUTSTATIC, null, null, "Ljava/awt/Canvas;")
+                Instruction.getTypeInsn(Opcodes.NEW, node.name),
+                Instruction.getFieldInsn(Opcodes.PUTSTATIC, null, null, "Ljava/awt/Canvas;")
         );
         ClientContainer client = Updater.get().getContainer(ClientContainer.class);
         for (ClassNode cn : Updater.get().getClassNodes().values()) {
